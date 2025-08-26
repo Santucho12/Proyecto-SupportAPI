@@ -1,0 +1,23 @@
+# Carpetas comunes de .NET/Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.dbmdl
+
+# Archivos de logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+
+# Publicaciones
+publish/
+
+# Configuraciones locales
+appsettings.*.json

@@ -1,0 +1,37 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: supportdb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=NuevaClave2025!
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: unless-stopped
+    networks:
+      - support-network
+
+  api:
+    build:
+      context: ./SupportApi
+      dockerfile: Dockerfile
+    container_name: supportapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - support-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  support-network:
+    driver: bridge
